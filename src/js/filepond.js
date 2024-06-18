@@ -23,6 +23,7 @@ import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 
 FilePond.registerPlugin(FilePondPluginImagePreview);
 
+console.log('TEST')
 window.createFilePond = function (element, multiple, files, postUrl, loadUrl) {
     if(!element) {
         return;
