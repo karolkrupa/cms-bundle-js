@@ -1,7 +1,8 @@
 const path = require('path')
 
-export function contentSources(bundleDir = 'vendor/karolkrupa/cms-bundle') {
-    bundleDir = path.resolve(bundleDir, '.');
+export function contentSources(vendorDir = 'vendor') {
+    vendorDir = path.resolve(vendorDir, '.');
+    const bundleDir = vendorDir + '/karolkrupa/cms-bundle';
     const assetsDir = path.resolve(bundleDir, './assets');
 
     return  [

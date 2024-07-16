@@ -72,6 +72,7 @@
     "@preline/collapse": "^2.0.2",
     "@preline/dropdown": "^2.0.2",
     "@preline/overlay": "^2.0.2",
+    "@vuepic/vue-datepicker": "^8.8.0",
     "apexcharts": "^3.44.1",
     "axios": "^1.6.4",
     "choices.js": "^10.2.0",
@@ -80,7 +81,6 @@
     "filepond-plugin-file-validate-size": "^2.2.8",
     "filepond-plugin-file-validate-type": "^1.2.8",
     "filepond-plugin-image-preview": "^4.6.11",
-    "flatpickr": "^4.6.13",
     "preline": "^2.0.0",
     "vue-select": "^4.0.0-beta.6"
   }

@@ -3,6 +3,7 @@ import Notification from "./Notification/Notification.vue";
 import Dropdown from './Dropdown.vue'
 import RemoteSelect from "./Select/RemoteSelect.vue";
 import Select from "./Select/Select.vue";
+import Datepicker from "./Datepicker/Date.vue";
 
 export default {
     ConfirmationModal,
@@ -19,5 +20,6 @@ export const namedComponents = {
     'd-notification': Notification,
     'd-dropdown': Dropdown,
     'd-remote-select': RemoteSelect,
-    'd-select': Select
+    'd-select': Select,
+    'd-datepicker': Datepicker
 }
