@@ -23,9 +23,17 @@ import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 
 FilePond.registerPlugin(FilePondPluginImagePreview);
 
-console.log('TEST')
+// Import the plugin code
+import FilePondPluginFilePoster from 'filepond-plugin-file-poster';
+
+// Import the plugin styles
+import 'filepond-plugin-file-poster/dist/filepond-plugin-file-poster.css';
+
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginFilePoster);
+
 window.createFilePond = function (element, multiple, files, postUrl, loadUrl) {
-    if(!element) {
+    if (!element) {
         return;
     }
 
@@ -94,7 +102,7 @@ window.createFilePond = function (element, multiple, files, postUrl, loadUrl) {
         }
     })
 
-    if(!form) {
+    if (!form) {
         return;
     }
 
@@ -102,8 +110,7 @@ window.createFilePond = function (element, multiple, files, postUrl, loadUrl) {
         let submits = form.querySelectorAll('[type="submit"]')
 
         pond.on('initfile', (file) => {
-            console.log('INIT FILE')
-            if(file.origin !== 1) {
+            if (file.origin !== 1) {
                 return;
             }
             for (let submit of submits) {
@@ -113,8 +120,6 @@ window.createFilePond = function (element, multiple, files, postUrl, loadUrl) {
         });
 
         pond.on('processfilestart', (e) => {
-            console.log('PROCESS START')
-
             for (let submit of submits) {
                 submit.setAttribute('disabled', '');
                 submit.classList.add('opacity-50')
@@ -122,7 +127,6 @@ window.createFilePond = function (element, multiple, files, postUrl, loadUrl) {
         });
 
         pond.on('processfiles', (e) => {
-            console.log('PROCESSED')
             for (let submit of submits) {
                 submit.removeAttribute('disabled', '');
                 submit.classList.remove('opacity-50')
@@ -130,7 +134,6 @@ window.createFilePond = function (element, multiple, files, postUrl, loadUrl) {
         });
 
         pond.on('processfile', (e) => {
-            console.log('PROCESSED')
             for (let submit of submits) {
                 submit.removeAttribute('disabled', '');
                 submit.classList.remove('opacity-50')
@@ -138,7 +141,6 @@ window.createFilePond = function (element, multiple, files, postUrl, loadUrl) {
         });
 
         pond.on('error', (e) => {
-            console.log('PROCESSED ERROR')
             for (let submit of submits) {
                 submit.removeAttribute('disabled', '');
                 submit.classList.remove('opacity-50')
