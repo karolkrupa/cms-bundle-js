@@ -44,6 +44,7 @@
     "apexcharts": "^3.44.1",
     "axios": "^1.6.4",
     "choices.js": "^10.2.0",
+    "ckeditor5": "^43.2.0",
     "filepond": "^4.30.4",
     "filepond-plugin-file-poster": "^2.5.1",
     "filepond-plugin-file-validate-size": "^2.2.8",

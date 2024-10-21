@@ -1,4 +1,4 @@
 import './sidebarToggle'
 import './filepond'
-// import './ckeditor'
+import './ckeditor/ckeditor'
 import './collection'
