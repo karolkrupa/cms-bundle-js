@@ -32,7 +32,16 @@ import 'filepond-plugin-file-poster/dist/filepond-plugin-file-poster.css';
 // Register the plugin
 FilePond.registerPlugin(FilePondPluginFilePoster);
 
-window.createFilePond = function (element, multiple, files, postUrl, loadUrl) {
+const DEFAULT_OPTIONS = {
+    postUrl: null,
+    loadUrl: null,
+    files: [],
+    multiple: false,
+    allowReorder: false,
+    allowRemove: false
+}
+
+window.createFilePond = function (element, filepondOptions = DEFAULT_OPTIONS) {
     if (!element) {
         return;
     }
@@ -49,10 +58,12 @@ window.createFilePond = function (element, multiple, files, postUrl, loadUrl) {
         // styleProgressIndicatorPosition: 'right bottom',
         // styleButtonRemoveItemPosition: 'left bottom',
         // styleButtonProcessItemPosition: 'right bottom',
-        allowMultiple: multiple,
+        allowMultiple: filepondOptions.multiple,
         allowFileSizeValidation: true,
         maxFileSize: '{{ max_size }}',
-        files: files,
+        files: filepondOptions.files,
+        allowReorder: filepondOptions.allowReorder,
+        allowRemove: filepondOptions.allowRemove,
         server: {
             process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
                 // fieldName is the name of the input field
@@ -61,7 +72,7 @@ window.createFilePond = function (element, multiple, files, postUrl, loadUrl) {
                 formData.append('file', file, file.name);
 
                 const request = new XMLHttpRequest();
-                request.open('POST', postUrl);
+                request.open('POST', filepondOptions.postUrl);
 
                 // Should call the progress method to update the progress to 100% before calling load
                 // Setting computable to false switches the loading indicator to infinite mode
@@ -97,7 +108,7 @@ window.createFilePond = function (element, multiple, files, postUrl, loadUrl) {
             },
             revert: null,
             restore: null,
-            load: loadUrl,
+            load: filepondOptions.loadUrl,
             fetch: null
         }
     })
