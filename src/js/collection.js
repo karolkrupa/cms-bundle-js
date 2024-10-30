@@ -1,5 +1,22 @@
 let buttons = document.querySelectorAll('[data-collection-button-add]')
 
+function executeScriptElements(containerElement) {
+    console.log(containerElement)
+    const scriptElements = containerElement.querySelectorAll("script");
+
+    Array.from(scriptElements).forEach((scriptElement) => {
+        const clonedElement = document.createElement("script");
+
+        Array.from(scriptElement.attributes).forEach((attribute) => {
+            clonedElement.setAttribute(attribute.name, attribute.value);
+        });
+
+        clonedElement.text = scriptElement.text;
+
+        scriptElement.parentNode.replaceChild(clonedElement, scriptElement);
+    });
+}
+
 for (let button of buttons) {
     button.addEventListener('click', () => {
         const containerId = button.dataset['collectionButtonAdd']
@@ -7,6 +24,11 @@ for (let button of buttons) {
         const container = document.getElementById(containerId)
 
         let template = container.dataset['prototype'].replace(
+            /__name__label__/g,
+            container.dataset.index
+        )
+
+        template = template.replace(
             /__name__/g,
             container.dataset.index
         )
@@ -14,7 +36,9 @@ for (let button of buttons) {
         let templateEl = document.createElement('div')
         templateEl.innerHTML = template
 
-        container.appendChild(templateEl.firstElementChild)
+        container.appendChild(templateEl)
+
+        executeScriptElements(templateEl)
 
         container.dataset.index++
 
