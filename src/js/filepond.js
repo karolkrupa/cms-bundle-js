@@ -38,7 +38,8 @@ const DEFAULT_OPTIONS = {
     files: [],
     multiple: false,
     allowReorder: false,
-    allowRemove: false
+    allowRemove: true,
+    allowReplace: true
 }
 
 window.createFilePond = function (element, filepondOptions = DEFAULT_OPTIONS) {
@@ -64,6 +65,7 @@ window.createFilePond = function (element, filepondOptions = DEFAULT_OPTIONS) {
         files: filepondOptions.files,
         allowReorder: filepondOptions.allowReorder,
         allowRemove: filepondOptions.allowRemove,
+        allowReplace: filepondOptions.allowReplace,
         server: {
             process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
                 // fieldName is the name of the input field
