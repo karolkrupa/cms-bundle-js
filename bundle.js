@@ -13,9 +13,6 @@ class CmsBundle {
     }
 
     initJs() {
-        require('@preline/accordion')
-        require('@preline/dropdown')
-
         require('./src/js')
     }
 
