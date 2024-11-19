@@ -1,6 +1,6 @@
 <script setup>
 import vSelect from 'vue-select'
-import {defineProps, ref} from 'vue'
+import {ref} from 'vue'
 import Deselect from "./Deselect.vue";
 
 import { props as commonSelectProps } from "./select";

@@ -1,8 +1,10 @@
 <script setup>
 import vSelect from 'vue-select'
-import {defineProps, nextTick, ref, computed, reactive} from 'vue'
+import 'vue-select/dist/vue-select.css';
+import {nextTick, ref, computed, reactive} from 'vue'
 import Deselect from "./Deselect.vue";
 import axios from "axios";
+
 
 import {props as commonSelectProps} from "./select";
 
@@ -49,7 +51,6 @@ const inputValue = computed(() => {
 async function searchResults(text, loading) {
   if (text === '') return;
 
-  loading(true)
   clearTimeout(fetchTimeout)
 
   fetchTimeout = setTimeout(async () => {

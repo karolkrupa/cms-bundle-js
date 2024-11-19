@@ -4,6 +4,8 @@ import Dropdown from './Dropdown.vue'
 import RemoteSelect from "./Select/RemoteSelect.vue";
 import Select from "./Select/Select.vue";
 import Datepicker from "./Datepicker/Date.vue";
+import SidebarDropdown from "../layout/SidebarDropdown.vue";
+import Sidebar from "../layout/Sidebar.vue";
 
 export default {
     ConfirmationModal,
@@ -11,15 +13,17 @@ export default {
     Dropdown
 }
 
-export { ConfirmationModal };
-export { Notification };
-export { Dropdown };
+export {ConfirmationModal};
+export {Notification};
+export {Dropdown};
 
 export const namedComponents = {
-    'confirmation-modal': ConfirmationModal,
+    'd-confirmation-modal': ConfirmationModal,
     'd-notification': Notification,
     'd-dropdown': Dropdown,
     'd-remote-select': RemoteSelect,
     'd-select': Select,
-    'd-datepicker': Datepicker
+    'd-datepicker': Datepicker,
+    'd-sidebar': Sidebar,
+    'd-sidebar-dropdown': SidebarDropdown
 }

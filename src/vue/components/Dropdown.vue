@@ -1,50 +1,75 @@
 <script setup>
-import {Popover, PopoverButton, PopoverPanel} from '@headlessui/vue'
-import {ChevronDownIcon} from '@heroicons/vue/20/solid'
+import {nextTick, ref} from 'vue'
 
-const props = defineProps({
-  activatorClass: {
-    type: String,
-    default: ''
-  },
-  panelClass:{
-    type: String,
-    default: ''
+const isOpen = defineModel({default: false})
+const closeAwayActive = ref(false)
+
+import {useFloating, autoUpdate, autoPlacement, shift} from '@floating-ui/vue';
+
+const button = ref(null);
+const floating = ref(null);
+const {floatingStyles} = useFloating(button, floating, {
+  transform: false,
+  whileElementsMounted: autoUpdate,
+  // placement: 'bottom',
+  middleware: [shift()]
+});
+
+function open() {
+  isOpen.value = true
+
+  setTimeout(() => {
+    closeAwayActive.value = true
+  }, 0)
+}
+
+function close() {
+  isOpen.value = false
+  closeAwayActive.value = false
+}
+
+function toggle() {
+  if (!isOpen.value) {
+    open()
+  } else {
+    close()
   }
-})
+}
 
+function clickAway() {
+  if (isOpen.value && closeAwayActive.value) {
+    close()
+  }
+}
 
 </script>
 
 <template>
-    <Popover v-slot="{ open }" class="">
-      <PopoverButton
-          as="button"
-          class="flex justify-center items-center size-7 text-sm font-semibold rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
-          :class="activatorClass"
+  <div class="flex" ref="button" @click="toggle">
+    <slot></slot>
+  </div>
+
+  <Teleport to="body" :disabled="!isOpen">
+    <transition
+        enter-active-class="transition duration-200 ease-out"
+        enter-from-class="translate-y-1 opacity-0"
+        enter-to-class="translate-y-0 opacity-100"
+        leave-active-class="transition duration-150 ease-in"
+        leave-from-class="translate-y-0 opacity-100"
+        leave-to-class="translate-y-1 opacity-0"
+    >
+      <div
+          ref="floating"
+          v-click-away="clickAway"
+          v-show="isOpen"
+          class="absolute z-10 min-w-60"
+          :style="floatingStyles"
       >
-        <slot name="activator"></slot>
-      </PopoverButton>
+        <slot name="content"></slot>
+      </div>
 
-      <transition
-          enter-active-class="transition duration-200 ease-out"
-          enter-from-class="translate-y-1 opacity-0"
-          enter-to-class="translate-y-0 opacity-100"
-          leave-active-class="transition duration-150 ease-in"
-          leave-from-class="translate-y-0 opacity-100"
-          leave-to-class="translate-y-1 opacity-0"
-      >
-        <PopoverPanel
-            class="absolute z-10 min-w-60 bg-white shadow-md rounded-lg p-2 mt-2 flex flex-col"
-            :class="panelClass"
-        >
-          <slot></slot>
-        </PopoverPanel>
-      </transition>
-    </Popover>
-
-
-
+    </transition>
+  </Teleport>
 </template>
 
 <style scoped>

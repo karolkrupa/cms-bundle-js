@@ -8,7 +8,7 @@ export function contentSources(vendorDir = 'vendor') {
     return  [
         path.resolve(__dirname, './src/js') + '/**/*.{js,vue}',
         path.resolve(__dirname, './src/vue') + '/**/*.{js,vue}',
-        bundleDir + "/templates/**/*.twig",
+        bundleDir + "/templates/**/*.html.twig",
         bundleDir + "/src/**/*.php",
         "node_modules/preline/dist/*.js"
     ]

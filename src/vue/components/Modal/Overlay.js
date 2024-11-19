@@ -1,6 +1,6 @@
 import {createApp, defineComponent, ref, h, watch, reactive, getCurrentInstance, onMounted} from "vue";
 
-const overlayInitClasses = 'z-[100] transition duration-200 fixed inset-0 bg-gray-900 dark:bg-neutral-900 bg-opacity-50 dark:bg-opacity-80 opacity-0'.split(' ')
+const overlayInitClasses = 'z-[100] transition duration-200 fixed inset-0 bg-gray-900 bg-opacity-50 opacity-0'.split(' ')
 const transitionDuration = 200
 
 let ModalContainer = defineComponent({

@@ -2,6 +2,7 @@ import './src/styles/app.scss';
 
 import {createApp} from "vue";
 import {namedComponents} from "./src/vue/components";
+import VueClickAway from "vue3-click-away";
 
 class CmsBundle {
     vueComponents = {};
@@ -16,8 +17,6 @@ class CmsBundle {
         require('@preline/dropdown')
 
         require('./src/js')
-
-        window.Choices = require("choices.js");
     }
 
     initVue() {
@@ -44,7 +43,9 @@ class CmsBundle {
 
         createApp({
             components: this.vueComponents
-        }).mount(container)
+        })
+            .use(VueClickAway)
+            .mount(container)
     }
 }
 

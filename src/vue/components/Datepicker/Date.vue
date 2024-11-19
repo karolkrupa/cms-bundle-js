@@ -1,6 +1,6 @@
 <script setup>
 import VueDatePicker from '@vuepic/vue-datepicker'
-import {ref, defineProps, computed} from "vue";
+import {ref, computed} from "vue";
 
 const props = defineProps({
   name: {
