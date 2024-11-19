@@ -10,7 +10,6 @@ module.exports = plugin(function ({theme}) {}, {
         },
     },
     plugins: [
-        require('@tailwindcss/forms'),
-        require('preline/plugin')
+        require('@tailwindcss/forms')
     ]
 })

@@ -1,8 +1,7 @@
 <script setup>
-import {ref, onMounted, getCurrentInstance, watch} from 'vue'
+import {ref, watch} from 'vue'
 
 const isOpen = defineModel('isOpen', {default: false})
-const instance = getCurrentInstance()
 const element = ref()
 
 watch(isOpen, value => {
@@ -20,7 +19,7 @@ function toggle() {
 
 <template>
   <div ref="element">
-    <slot v-bind="{ isOpen, toggle, contentClass: { hidden: !isOpen } }"></slot>
+    <slot v-bind="{ isOpen, toggle }"></slot>
   </div>
 </template>
 
